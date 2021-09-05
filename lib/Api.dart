@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -9,7 +10,7 @@ const URL_BASE = "https://www.googleapis.com/youtube/v3/";
 
 class Api {
 
-  pesquisar(String pesquisa) async {
+  Future<List<Video>> pesquisar (String pesquisa) async {
 
     http.Response response = await http.get(Uri.parse(
         URL_BASE + "search"
@@ -33,17 +34,19 @@ class Api {
           }
       ).toList();
 
+        return videos;
+
+      /*
       for(var video in videos){
         print("resultado: " + video.titulo.toString()); // colocar o toString pois foi iniciado o parâmetro como String?
       }
+      */
 
       /*
       for(var video in dadosJson["items"]){
         print("Resultado: " + video.toString());
       }
       */
-
-
 
     }else{
 
